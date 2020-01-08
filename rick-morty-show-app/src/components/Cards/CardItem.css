@@ -1,0 +1,11 @@
+.cardItem{
+    flex: 1 0 21%;
+    border: 1px solid black;
+}
+
+
+@media(max-width: 480px){
+    .cardItem{
+        flex: 1 0 45%;
+    }
+  }

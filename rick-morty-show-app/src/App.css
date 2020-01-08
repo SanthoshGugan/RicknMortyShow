@@ -1,0 +1,35 @@
+.App {
+  text-align: center;
+  display: grid;
+  grid-template-columns: minmax(200px, 20vw) 1fr;
+  grid-template-areas: 
+                    "filters selectedFilters"
+                    "filters cards";
+
+}
+
+.App > *{
+  border: 1px solid black;
+}
+
+.filters{
+  grid-area: filters;
+}
+
+.selectedFilters{
+  grid-area: selectedFilters;
+}
+
+.cards{
+  grid-area: cards;
+}
+
+@media(max-width: 480px){
+  .App{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .App > *{
+  }
+}
