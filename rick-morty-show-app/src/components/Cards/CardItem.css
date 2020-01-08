@@ -1,11 +1,61 @@
 .cardItem{
     flex: 1 0 21%;
     border: 1px solid black;
+    margin: 0.3em 0.2em;
+    border-radius: 5px;
 }
 
+.imageWrapper{
+    width: 100%;
+    height: 45%;
+    position: relative;
+    overflow: hidden;
+}
 
+.imageWrapper > img{
+    width: 100%;
+    height: 100%;
+}
+
+.imageOverlay{
+    position: absolute;
+    bottom: 0%;
+    background-color: grey;
+    opacity: 0.7;
+    width: 100%;
+    font-size: 24px;
+    color: white;
+    text-align: left;
+    padding: 5px;
+}
+.characterName{
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.characterMeta{
+    font-size: 0.75em;
+}
+
+.characterInfo > ul{
+    list-style-type: none;
+    padding: 0;
+}
+
+.characterInfo > ul > li {
+        display: flex;
+        justify-content: space-between;
+        margin: 0px 10px;
+        border-bottom: 1px solid;
+        padding: 5px 0;
+}
 @media(max-width: 480px){
     .cardItem{
         flex: 1 0 45%;
     }
+
+    .imageOverlay{
+        font-size: 16px;
+    }
+
   }

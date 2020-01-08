@@ -2,6 +2,7 @@
   text-align: center;
   display: grid;
   grid-template-columns: minmax(200px, 20vw) 1fr;
+  grid-template-rows: minmax(150px, 200px) 1fr;
   grid-template-areas: 
                     "filters selectedFilters"
                     "filters cards";
@@ -9,7 +10,7 @@
 }
 
 .App > *{
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .filters{
@@ -30,6 +31,4 @@
     flex-direction: column;
   }
 
-  .App > *{
-  }
 }
