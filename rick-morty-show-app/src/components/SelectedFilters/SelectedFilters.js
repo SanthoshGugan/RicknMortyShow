@@ -15,7 +15,7 @@ export const SelectedFilters = (props) => {
 
     const sortChange = (event) => {
         let option = event.target.value;
-        if(option == "Ascending")
+        if(option === "Ascending")
             props.onSortChange(true);
         else
             props.onSortChange(false);

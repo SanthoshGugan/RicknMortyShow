@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 
@@ -58,7 +57,7 @@ export default class App extends React.Component {
   }
 
   updatedCardList(nextApiList) {
-    if (this.apiCardList.length == nextApiList.length)
+    if (this.apiCardList.length === nextApiList.length)
       return _.cloneDeep(this.state.cardList);
     this.apiCardList = _.cloneDeep(nextApiList);
     let newCardList = this.filterService.updateFilterByCategory(this.state.filters, this.apiCardList, this.state.cardList);

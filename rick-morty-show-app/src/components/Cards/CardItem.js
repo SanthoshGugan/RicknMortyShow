@@ -9,7 +9,7 @@ export const CardItem = (props) => {
     return (
         <div class="cardItem">
             <div className="imageWrapper">
-                <img src={cardItem.image} />
+                <img src={cardItem.image} alt={cardItem.origin.name}/>
                 <div className="imageOverlay">
                     <div className="characterName">{cardItem.name}</div>
                     <div className="characterMeta">id : {cardItem.id} - created {dateFormatter.dateToText(cardItem.created)}</div>

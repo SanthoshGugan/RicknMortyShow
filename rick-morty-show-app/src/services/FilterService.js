@@ -1,7 +1,4 @@
 const _ = require("lodash");
-const filterByCategory = (item, index) => {
-    return true;
-}
 export default class FilterService {
     getDistinctFilters(filters) {
         const distinctFilters = {};
@@ -10,6 +7,7 @@ export default class FilterService {
             filter.map(filterItem => {
                 if (!filterItem.others)
                     distinctFilters[key][filterItem.value] = 1;
+                return null;
             })
         }
         return distinctFilters;
@@ -22,6 +20,7 @@ export default class FilterService {
             filter.map(filterItem => {
                 if (filterItem.status)
                     distinctFilters[key][filterItem.value] = 1;
+                return null;
             })
         }
         return distinctFilters;
