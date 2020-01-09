@@ -3,4 +3,18 @@
     flex-direction: row;
     flex-wrap: wrap;
     padding: 0.2em 0.3em;
+    background-color: black;
+    
+    justify-content: space-around;
+}
+.noCards{
+    text-align: center;
+    font-size: 1.5em;
+    margin: auto;
+    color: white;
+}
+@media(max-width: 480px){
+    .cards{
+        background-color: white;
+    }
 }

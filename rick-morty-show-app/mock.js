@@ -1,4 +1,4 @@
-{
+export const mock = {
     "info": {
         "count": 493,
         "pages": 25,
@@ -575,4 +575,4 @@
             "created": "2017-11-04T22:34:53.659Z"
         }
     ]
-}
+};

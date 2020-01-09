@@ -1,12 +1,15 @@
 .cardItem{
-    flex: 1 0 21%;
-    border: 1px solid black;
-    margin: 0.3em 0.2em;
+    flex: 0 0 21%;
+    border: 1px solid #4c4141;
+    margin: 0.3em 0.1em;
     border-radius: 5px;
+    background-color: #4c4141;
+    color: white;
+    font-size: 24px;
 }
 
 .imageWrapper{
-    width: 100%;
+    min-width: 100%;
     height: 45%;
     position: relative;
     overflow: hidden;
@@ -15,6 +18,7 @@
 .imageWrapper > img{
     width: 100%;
     height: 100%;
+    border-radius: 5px;
 }
 
 .imageOverlay{
@@ -23,7 +27,7 @@
     background-color: grey;
     opacity: 0.7;
     width: 100%;
-    font-size: 24px;
+    font-size: 1em;
     color: white;
     text-align: left;
     padding: 5px;
@@ -34,7 +38,7 @@
 }
 
 .characterMeta{
-    font-size: 0.75em;
+    font-size: 0.5em;
 }
 
 .characterInfo > ul{
@@ -46,16 +50,44 @@
         display: flex;
         justify-content: space-between;
         margin: 0px 10px;
-        border-bottom: 1px solid;
+        border-bottom: 1px solid #585656;
         padding: 5px 0;
+        font-size: 0.60em;
 }
-@media(max-width: 480px){
+
+.characterInfo > ul > li:last-child{
+    border-bottom: none;
+}
+
+.characterInfo > ul > li > .heading{
+    text-align: left;
+}
+
+.characterInfo > ul > li > .value{
+    color: gold;
+    text-align: right;
+}
+
+
+/* SMARTPHONES LANDSCAPE */
+@media only screen and (max-width:480px) {
     .cardItem{
-        flex: 1 0 45%;
+        flex: 0 1 45%;
+        font-size: 12px;
     }
 
-    .imageOverlay{
-        font-size: 16px;
+}
+
+@media only screen and (max-width: 1024px) {
+    .cardItem{
+        font-size: 20px;
     }
 
-  }
+}
+
+@media only screen and (min-width: 1024px) {
+    .cardItem{
+        font-size: 24px;
+    }
+
+} 

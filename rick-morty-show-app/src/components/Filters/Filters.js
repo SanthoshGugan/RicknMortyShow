@@ -3,8 +3,18 @@ import React from "react";
 import "./Filters.css";
 
 import {FilterItem} from "./FilterItem";
-
 export const Filters = (props) => {
+    const renderFilterItems = () => {
+        return (
+            <>
+                {
+                Object.keys(props.filters).map(filter => {
+                    return <FilterItem category={filter} options={props.filters[filter]} handleFilterAction = {props.onFilterClick} />;
+                })}
+
+            </>
+        );
+    }
     return (
         <div className="filters">
             <div className="filterTitle">
@@ -15,9 +25,7 @@ export const Filters = (props) => {
                     </div>
                 </div>
             </div>
-            <FilterItem />  
-            <FilterItem />  
-            <FilterItem />  
+            {renderFilterItems()}  
         </div>
     );
 }
