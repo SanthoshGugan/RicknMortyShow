@@ -31,7 +31,9 @@ export default class App extends React.Component {
         ],
       cardList: [],
       isAsc: true,
-      isFiltersVisible: true
+      isFiltersVisible: true,
+      rangeStart: 0,
+      rangeEnd: 7
     };
 
     this.fetchCharacterService = new FetchCharactersService();
@@ -44,6 +46,7 @@ export default class App extends React.Component {
     this.handleTagClose = this.handleTagClose.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
     this.toggleFilterVisibilty = this.toggleFilterVisibilty.bind(this);
+    this.handleRangeChange = this.handleRangeChange.bind(this);
   }
 
   componentDidMount() {
@@ -109,7 +112,32 @@ export default class App extends React.Component {
     this.setState({ isFiltersVisible });
   }
 
+  handleRangeChange(mode){
+    let rangeStart, rangeEnd;
+    if(mode == "prev"){
+      if(this.state.rangeStart > 7){
+        rangeStart = this.state.rangeStart - 8
+        rangeEnd = rangeStart+7;
+      }else{
+        rangeStart = 0;
+        rangeEnd = 7;
+      }
+    }else{
+      if(this.state.rangeEnd+8 <=this.state.cardList.length-1){
+        rangeStart = this.state.rangeEnd+1;
+        rangeEnd = rangeStart+7;
+      }else{
+        rangeStart = this.state.cardList.length-8;
+        rangeEnd = rangeStart+7;
+      }
+    }
+    console.log("Ranges :", rangeStart, rangeEnd);
+    this.setState({rangeStart, rangeEnd});
+  }
   render() {
+    let cardList = _.cloneDeep(this.state.cardList);
+    console.log("Actual CardList length : ", this.state.cardList.length);
+    cardList = cardList.slice(this.state.rangeStart, this.state.rangeEnd+1);
     return (
       <div className="App">
         <Filters
@@ -118,8 +146,16 @@ export default class App extends React.Component {
           onFilterVisibilityToggle={this.toggleFilterVisibilty}
           isFiltersVisible={this.state.isFiltersVisible}
         />
-        <SelectedFilters tags={this.state.selectedFilters} onTagClose={this.handleTagClose} onSortChange={this.handleSortChange} />
-        <Cards cardList={this.state.cardList} />
+        <SelectedFilters 
+          tags={this.state.selectedFilters} 
+          onTagClose={this.handleTagClose} 
+          onSortChange={this.handleSortChange} 
+          totalCount={this.state.cardList.length}
+          rangeStart={this.state.rangeStart}
+          rangeEnd={this.state.rangeEnd}
+          onRangeChange={this.handleRangeChange}
+        />
+        <Cards cardList={cardList} />
       </div>
     );
 

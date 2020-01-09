@@ -32,7 +32,8 @@
 }
 .sortInput{
     margin: 0.5em;
-    float: right;
+    display: flex;
+    justify-content: space-between;
 }
 
 .sortInput select{
@@ -40,15 +41,46 @@
     padding: 5px 10px;
 }
 
+
+.pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+}
+
+.pagination input{
+    width: 35px;
+    height: 25px;
+    border: none;
+    box-shadow: 1px 0px 5px 2px #c5bfbf;
+    text-align: center;
+}
+
+.pagination > *{
+    margin-left: 0.5em;
+}
+
 @media(max-width: 480px){
     .sortInput{
-        float: none;
         width: 100%;
-        margin: 0.5em 0.2em;
+        margin: 2em 0.2em;
+        flex-direction: column;
+    }
+
+    .sortInput > *{
+        margin-bottom: 0.5em;
+    }
+
+    .sortInput .pagination{
+        order: 2;
+        margin: 2em;
+        font-size: 0.75em;
     }
 
     .sortInput select{
         width: 75%;
         margin: auto;
+        order: 1;
     }
 }

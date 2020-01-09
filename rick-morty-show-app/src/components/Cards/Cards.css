@@ -13,6 +13,7 @@
     margin: auto;
     color: white;
 }
+
 @media(max-width: 480px){
     .cards{
         background-color: rgba(244, 244, 244, 0.3);

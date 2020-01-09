@@ -13,6 +13,25 @@ export const SelectedFilters = (props) => {
         );
     }
 
+    
+    const renderPagination = () => {
+        return (
+            <div className="pagination">
+                <button className="no-btn" onClick={() => props.onRangeChange("prev")}>Prev </button>
+                <div>Showing </div>
+                {/* <input type="number" className="rangeStart" value={props.rangeStart} onChange={(e) => props.onRangeChange(e.target.value,props.rangeEnd,1)}/> */}
+                <b>{props.rangeStart+1}</b>
+                <div> to </div>
+                {/* <input type="number" className="rangeEnd" value={props.rangeEnd} onChange={(e) => props.onRangeChange(props.rangeStart, e.target.value,2)} /> */}
+                <b>{props.rangeEnd+1}</b>
+                <div> of total</div>
+                <b>{props.totalCount}</b>
+
+                <button className="no-btn" onClick={() => props.onRangeChange("next")}>Next </button>
+            </div>
+        );
+    }
+
     const sortChange = (event) => {
         let option = event.target.value;
         if(option === "Ascending")
@@ -26,7 +45,9 @@ export const SelectedFilters = (props) => {
             <div className="tags">
                 {renderTags()}
             </div>
+                
             <div className="sortInput">
+                {renderPagination()}
                 <select onChange={sortChange}>
                     <option value="" disabled selected hidden>Sort by ID</option>
                     <option value="Ascending">Ascending</option>

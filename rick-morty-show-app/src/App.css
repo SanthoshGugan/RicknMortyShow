@@ -12,6 +12,15 @@
   background-repeat: repeat;
 }
 
+.no-btn{
+  outline: none;
+  box-shadow: none;
+  background-color: inherit;
+}
+
+.no-btn:active{
+  outline: none;
+}
 
 .filters{
   grid-area: filters;

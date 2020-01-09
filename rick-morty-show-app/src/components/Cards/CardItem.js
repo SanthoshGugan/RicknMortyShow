@@ -7,7 +7,7 @@ export const CardItem = (props) => {
     const cardItem = props.card;
     const dateFormatter = new DateFormatter();
     return (
-        <div class="cardItem">
+        <div className="cardItem">
             <div className="imageWrapper">
                 <img src={cardItem.image} alt={cardItem.origin.name}/>
                 <div className="imageOverlay">
