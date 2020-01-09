@@ -8,6 +8,20 @@
 .filterVisibility{
     display: none;
 }
+
+.myProjects{
+    color: blue;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
+.myProjects >ul > li{
+    list-style-type: circle;
+    list-style-position: outside;
+}
 @media(max-width: 480px){
     .filterTitle{
         margin: 0.5em 1em;
@@ -36,5 +50,9 @@
 
     .filterTitle h2{
         margin: 0px;
+    }
+
+    .myProjects{
+        display: none;
     }
 }
