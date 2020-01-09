@@ -2,16 +2,16 @@
   text-align: center;
   display: grid;
   grid-template-columns: minmax(200px, 20vw) 1fr;
-  grid-template-rows: minmax(150px, 200px) 1fr;
+  grid-template-rows: 200px 1fr;
   grid-template-areas: 
                     "filters selectedFilters"
                     "filters cards";
   grid-gap: 1em;
+  background-image: url("./fabric_of_squares_gray.png");
+  background-size: auto;
+  background-repeat: repeat;
 }
 
-.App > *{
-  /* border: 1px solid black; */
-}
 
 .filters{
   grid-area: filters;

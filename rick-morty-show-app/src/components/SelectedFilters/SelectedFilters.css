@@ -1,6 +1,6 @@
 .selectedFilters{
     text-align: left;
-    padding: 0.3em 0.5em;
+    padding: 0.5em;
     word-break: break-all;
 }
 
@@ -12,12 +12,43 @@
     display: inline-block;
     background-color: #beb8b8;
     color: white;
+    transition: all 0.5s ease-out;
+    border: 1px solid white;
+}
+
+.tag:hover{
+    background-color: #837e7e;
+    border: 1px solid grey;
 }
 
 .tag .close{
     cursor: pointer;
+    margin-left: 10px;
+    font-weight: 600;
+}
+
+.tag .close:hover{
+    color: #d6d2d2;
 }
 .sortInput{
-    margin: 0.2em 0.3em;
+    margin: 0.5em;
     float: right;
+}
+
+.sortInput select{
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+@media(max-width: 480px){
+    .sortInput{
+        float: none;
+        width: 100%;
+        margin: 0.5em 0.2em;
+    }
+
+    .sortInput select{
+        width: 75%;
+        margin: auto;
+    }
 }

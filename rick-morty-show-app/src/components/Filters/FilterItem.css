@@ -1,11 +1,16 @@
 .filterItem {
     padding: 0.3em 0.5em;
     border: 1px solid black;
-    margin: 0.2em 0.3em;
+    margin: 1.5em 0.3em;
     text-align: left;
     text-transform: capitalize;
+    border-radius: 5px;
 }
 
+.filterItem h3{
+    padding: 0;
+    margin: 0;
+}
 .filterItem > ul{
     list-style-type: none;
     padding: 0;
