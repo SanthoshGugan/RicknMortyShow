@@ -1,16 +1,18 @@
 import React from "react";
+import DateFormatter from "../../utils/DateFormatter";
 
 import "./CardItem.css";
 
 export const CardItem = (props) => {
     const cardItem = props.card;
+    const dateFormatter = new DateFormatter();
     return (
         <div class="cardItem">
             <div className="imageWrapper">
                 <img src={cardItem.image} />
                 <div className="imageOverlay">
                     <div className="characterName">{cardItem.name}</div>
-                    <div className="characterMeta">id : {cardItem.id} - created {cardItem.created}</div>
+                    <div className="characterMeta">id : {cardItem.id} - created {dateFormatter.dateToText(cardItem.created)}</div>
                 </div>
             </div>
             <div className="characterInfo">

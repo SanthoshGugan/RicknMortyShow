@@ -30,7 +30,8 @@ export default class App extends React.Component {
         [{category: "species",value: "Human"},{category: "species",value: "Mytholog"}, {category: "species",value: "Other Species..."},
         {category: "gender",value: "Male"}, {category: "gender",value: "Female"}, {category: "gender",value: "Others..."}],
       cardList:[],
-      isAsc: true
+      isAsc: true,
+      isFiltersVisible: true
     };
 
     this.fetchCharacterService = new FetchCharactersService();
@@ -42,13 +43,20 @@ export default class App extends React.Component {
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleTagClose = this.handleTagClose.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
+    this.toggleFilterVisibilty = this.toggleFilterVisibilty.bind(this);
 
   }
 
   componentDidMount(){
-    this.apiCardList = this.fetchCharacterService.fetchFromApi();
-    let cardList = _.cloneDeep(this.apiCardList);
-    this.setState({cardList});
+    let that = this;
+    this.fetchCharacterService.fetchFromApi()
+      .then(apiList => {
+        that.apiCardList = _.cloneDeep(apiList);
+        let cardList = _.cloneDeep(that.apiCardList);
+        
+        console.log("Fetched results list : ", apiList.length, cardList.length);
+        that.setState({cardList});
+      });
   }
 
   modifyTags(category, tag, toggle){
@@ -90,10 +98,22 @@ export default class App extends React.Component {
     // console.log("Cardlist after sorting : ", cardList);
     this.setState({cardList, isAsc});
   }
+
+  toggleFilterVisibilty(){
+    let isFiltersVisible = !this.state.isFiltersVisible;
+    console.log("toggle filter visibilty : ", isFiltersVisible);
+    this.setState({isFiltersVisible});
+  }
+
   render() {
     return (
       <div className="App">
-          <Filters filters={this.state.filters} onFilterClick = {this.handleFilterChange}/>
+          <Filters 
+            filters={this.state.filters} 
+            onFilterClick = {this.handleFilterChange} 
+            onFilterVisibilityToggle={this.toggleFilterVisibilty}
+            isFiltersVisible = {this.state.isFiltersVisible}
+          />
           <SelectedFilters tags={this.state.selectedFilters} onTagClose= {this.handleTagClose} onSortChange={this.handleSortChange}/>
           <Cards cardList={this.state.cardList} />
       </div>

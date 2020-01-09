@@ -3,6 +3,7 @@
     border: 1px solid black;
     margin: 0.2em 0.3em;
     text-align: left;
+    text-transform: capitalize;
 }
 
 .filterItem > ul{

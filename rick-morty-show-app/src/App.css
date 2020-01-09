@@ -6,7 +6,7 @@
   grid-template-areas: 
                     "filters selectedFilters"
                     "filters cards";
-
+  grid-gap: 1em;
 }
 
 .App > *{
