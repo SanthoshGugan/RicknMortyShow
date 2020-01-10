@@ -15,19 +15,19 @@ export const SelectedFilters = (props) => {
 
     
     const renderPagination = () => {
+        if(props.rangeEnd === 0)
+            return <div className="pagination"></div>;
         return (
             <div className="pagination">
-                <button className="no-btn" onClick={() => props.onRangeChange("prev")}>Prev </button>
+                <button className="no-btn" onClick={() => props.onRangeChange("prev")} disabled={props.rangeStart === 0}>Prev </button>
                 <div>Showing </div>
-                {/* <input type="number" className="rangeStart" value={props.rangeStart} onChange={(e) => props.onRangeChange(e.target.value,props.rangeEnd,1)}/> */}
-                <b>{props.rangeStart+1}</b>
+                <b>{props.rangeStart +1}</b>
                 <div> to </div>
-                {/* <input type="number" className="rangeEnd" value={props.rangeEnd} onChange={(e) => props.onRangeChange(props.rangeStart, e.target.value,2)} /> */}
-                <b>{props.rangeEnd+1}</b>
+                <b>{props.rangeEnd + 1}</b>
                 <div> of total</div>
                 <b>{props.totalCount}</b>
 
-                <button className="no-btn" onClick={() => props.onRangeChange("next")}>Next </button>
+                <button className="no-btn" onClick={() => props.onRangeChange("next")} disabled={props.rangeEnd+1 ===props.cardListLength}>Next </button>
             </div>
         );
     }

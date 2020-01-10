@@ -2,7 +2,7 @@
   text-align: center;
   display: grid;
   grid-template-columns: minmax(200px, 20vw) 1fr;
-  grid-template-rows: minma(150px.200px) 1fr;
+  grid-template-rows: minmax(150px,200px) 1fr;
   grid-template-areas: 
                     "filters selectedFilters"
                     "filters cards";

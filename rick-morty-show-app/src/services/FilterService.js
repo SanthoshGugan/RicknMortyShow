@@ -18,26 +18,36 @@ export default class FilterService {
         for (let [key, filter] of Object.entries(filters)) {
             distinctFilters[key] = {};
             filter.map(filterItem => {
-                if (filterItem.status)
-                    distinctFilters[key][filterItem.value] = 1;
+                    distinctFilters[key][filterItem.value] = filterItem.status ? 1 : 0;
                 return null;
             })
         }
         return distinctFilters;
     }
-
-    filterByCategory(filterCategory, filter, cardList, apiList) {
-        let toBeAdded, updatedList;
-        if (filter.status) {
-            toBeAdded = apiList
-                .filter((item, index) => {
-                    return item[filterCategory] === filter.value;
-                });
-            updatedList = [..._.cloneDeep(cardList), ..._.cloneDeep(toBeAdded)];
-        } else {
-            updatedList = cardList.filter(cardItem => cardItem[filterCategory] !== filter.value);
+    checkCurrentStatus(filtersByStatus, item, filterCategory){
+        if(!filtersByStatus[filterCategory].hasOwnProperty(item[filterCategory])){
+            if(!filtersByStatus[filterCategory]["Others"])
+                return false;
+        }else{
+            if(!filtersByStatus[filterCategory][item[filterCategory]])
+                return false;
         }
-        return updatedList;
+
+        return true;
+    }
+    filterByCategory(filterCategory, filter, cardList, apiList,filters) {
+        let updatedList;
+        let filtersByStatus = this.getDistinctFiltersByStatus(filters);
+        updatedList = apiList
+            .filter(item => {
+                if(!this.checkCurrentStatus(filtersByStatus, item,"species"))
+                    return false;
+
+                if(!this.checkCurrentStatus(filtersByStatus, item,"gender"))
+                    return false;
+                return true;
+            });
+        return _.cloneDeep(updatedList);
     }
 
     filterByOtherCategory(filterCategory, distinctFilters, cardList, filter, apiList) {
@@ -60,7 +70,7 @@ export default class FilterService {
                 return true;
             if(distinctFilters['gender'].hasOwnProperty(cardItem['gender']))
                 return true;
-            if(distinctFilters['species'].hasOwnProperty('Other Species...') || distinctFilters['gender'].hasOwnProperty('Others...'))
+            if(distinctFilters['species'].hasOwnProperty('Others') || distinctFilters['gender'].hasOwnProperty('Others'))
                 return true;
             return false;
         });

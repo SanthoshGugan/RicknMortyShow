@@ -22,12 +22,12 @@ export default class App extends React.Component {
     this.state = {
       filters:
       {
-        species: [{ value: "Human", status: true, others: false }, { value: "Mytholog", status: true, others: false }, { value: "Other Species...", status: true, others: true }],
-        gender: [{ value: "Male", status: true, others: false }, { value: "Female", status: true, others: false }, { value: "Others...", status: true, others: true }]
+        species: [{ value: "Human", status: true, others: false }, { value: "Mytholog", status: true, others: false }, { value: "Others", status: true, others: true }],
+        gender: [{ value: "Male", status: true, others: false }, { value: "Female", status: true, others: false }, { value: "Others", status: true, others: true }]
       },
       selectedFilters:
-        [{ category: "species", value: "Human" }, { category: "species", value: "Mytholog" }, { category: "species", value: "Other Species..." },
-        { category: "gender", value: "Male" }, { category: "gender", value: "Female" }, { category: "gender", value: "Others..." }
+        [{ category: "species", value: "Human" }, { category: "species", value: "Mytholog" }, { category: "species", value: "Others" },
+        { category: "gender", value: "Male" }, { category: "gender", value: "Female" }, { category: "gender", value: "Others" }
         ],
       cardList: [],
       isAsc: true,
@@ -47,6 +47,7 @@ export default class App extends React.Component {
     this.handleSortChange = this.handleSortChange.bind(this);
     this.toggleFilterVisibilty = this.toggleFilterVisibilty.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
+    this.resetRange = this.resetRange.bind(this);
   }
 
   componentDidMount() {
@@ -90,15 +91,18 @@ export default class App extends React.Component {
   handleFilterChange(category, filter, index) {
     let cardList = this.updatedCardList(this.fetchCharacterService.getCharacterList());
     let filters = _.cloneDeep(this.state.filters);
-    if (filter.others) {
-      cardList = this.filterService.filterByOtherCategory(category, this.distinctFilters, cardList, filter, this.apiCardList)
-    } else {
-      cardList = this.filterService.filterByCategory(category, filter, cardList, this.apiCardList);
-    }
-    cardList = this.sortService.sortById(cardList, this.state.isAsc);
     filters[category][index] = Object.assign({}, filter);
+   /*  if (filter.others) {
+      // cardList = this.filterService.filterByOtherCategory(category, this.distinctFilters, cardList, filter, this.apiCardList);
+      cardList = this.filterService.filterByCategory(category, filter, cardList, this.apiCardList, filters);
+    } else {
+      cardList = this.filterService.filterByCategory(category, filter, cardList, this.apiCardList, filters);
+    } */
+    cardList = this.filterService.filterByCategory(category, filter, cardList, this.apiCardList, filters);
+    cardList = this.sortService.sortById(cardList, this.state.isAsc);
     this.setState({ cardList, filters });
     this.modifyTags(category, filter.value, filter.status);
+    this.resetRange(cardList);
   }
 
   handleSortChange(isAsc) {
@@ -131,12 +135,26 @@ export default class App extends React.Component {
         rangeEnd = rangeStart+7;
       }
     }
-    console.log("Ranges :", rangeStart, rangeEnd);
+    this.setState({rangeStart, rangeEnd});
+  }
+
+  resetRange(cardList){
+    let rangeStart, rangeEnd;
+    console.log("Cardlist length : ", cardList.length, cardList);
+    if(cardList.length === 0){
+      this.setState({rangeStart: 0, rangeEnd: 0});
+      return;
+    }
+    rangeStart = 0;
+    if(cardList.length > 8){
+      rangeEnd = 7;
+    }else{
+      rangeEnd = cardList.length -1;
+    }
     this.setState({rangeStart, rangeEnd});
   }
   render() {
     let cardList = _.cloneDeep(this.state.cardList);
-    console.log("Actual CardList length : ", this.state.cardList.length);
     cardList = cardList.slice(this.state.rangeStart, this.state.rangeEnd+1);
     return (
       <div className="App">
@@ -154,6 +172,7 @@ export default class App extends React.Component {
           rangeStart={this.state.rangeStart}
           rangeEnd={this.state.rangeEnd}
           onRangeChange={this.handleRangeChange}
+          cardListLength = {this.state.cardList.length}
         />
         <Cards cardList={cardList} />
       </div>
