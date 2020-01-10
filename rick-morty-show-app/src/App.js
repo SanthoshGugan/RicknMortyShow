@@ -41,14 +41,13 @@ export default class App extends React.Component {
     this.sortService = new SortService();
 
     this.apiCardList = [];
-    this.distinctFilters = this.filterService.getDistinctFilters(this.state.filters);
     this.handleFilterChange = this.handleFilterChange.bind(this);
     this.handleTagClose = this.handleTagClose.bind(this);
     this.handleSortChange = this.handleSortChange.bind(this);
     this.toggleFilterVisibilty = this.toggleFilterVisibilty.bind(this);
     this.handleRangeChange = this.handleRangeChange.bind(this);
     this.resetRange = this.resetRange.bind(this);
-  }
+  } 
 
   componentDidMount() {
     let that = this;
@@ -92,12 +91,6 @@ export default class App extends React.Component {
     let cardList = this.updatedCardList(this.fetchCharacterService.getCharacterList());
     let filters = _.cloneDeep(this.state.filters);
     filters[category][index] = Object.assign({}, filter);
-   /*  if (filter.others) {
-      // cardList = this.filterService.filterByOtherCategory(category, this.distinctFilters, cardList, filter, this.apiCardList);
-      cardList = this.filterService.filterByCategory(category, filter, cardList, this.apiCardList, filters);
-    } else {
-      cardList = this.filterService.filterByCategory(category, filter, cardList, this.apiCardList, filters);
-    } */
     cardList = this.filterService.filterByCategory(category, filter, cardList, this.apiCardList, filters);
     cardList = this.sortService.sortById(cardList, this.state.isAsc);
     this.setState({ cardList, filters });
