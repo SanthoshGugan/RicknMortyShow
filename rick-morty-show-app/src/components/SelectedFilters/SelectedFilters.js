@@ -20,7 +20,7 @@ export const SelectedFilters = (props) => {
         return (
             <div className="pagination">
                 <button className="no-btn" onClick={() => props.onRangeChange("prev")} disabled={props.rangeStart === 0}>
-                    <i class="fa fa-chevron-left"></i>
+                    <i className="fa fa-chevron-left"></i>
                 </button>
                 <div>Showing </div>
                 <b>{props.rangeStart +1}</b>
@@ -31,7 +31,7 @@ export const SelectedFilters = (props) => {
                 <b>{props.totalCount}</b>
 
                 <button className="no-btn" onClick={() => props.onRangeChange("next")} disabled={props.rangeEnd+1 ===props.cardListLength}>
-                <i class="fa fa-chevron-right"></i>
+                <i className="fa fa-chevron-right"></i>
                 </button>
             </div>
         );

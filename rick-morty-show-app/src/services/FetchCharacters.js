@@ -17,6 +17,9 @@ export default class FetchCharactersService {
                     },1000);
                     return resolve(this.characterList);
                 })
+                .catch(err => {
+                    console.log("Erorr in api fetch : ",err);
+                })
         });
     }
 
@@ -31,6 +34,9 @@ export default class FetchCharactersService {
                 setTimeout(()=> {
                     this.backgroundFetch();
                 },5000)
+            })
+            .catch(err => {
+                console.log("Erorr in api fetch : ",err);
             })
     }
     getCharacterList(){

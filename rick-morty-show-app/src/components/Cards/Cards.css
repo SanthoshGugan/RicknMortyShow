@@ -6,6 +6,7 @@
     background-color: rgba(32, 32, 32, 0.3);
     justify-content: space-around;
     border-radius: 15px;
+    margin: 0.1em 0.2em;
 }
 .noCards{
     text-align: center;

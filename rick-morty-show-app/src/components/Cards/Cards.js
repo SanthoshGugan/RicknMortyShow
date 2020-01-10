@@ -8,8 +8,8 @@ export const Cards = (props) => {
             return <div className="noCards">No Cards</div>
         return (
             <>
-                {cardList.map(cardItem => {
-                    return <CardItem card={cardItem} />;
+                {cardList.map((cardItem, index) => {
+                    return <CardItem card={cardItem} key={index}/>;
                 })}
             </>
         );

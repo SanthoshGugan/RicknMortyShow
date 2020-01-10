@@ -17,23 +17,23 @@ export const CardItem = (props) => {
             </div>
             <div className="characterInfo">
                 <ul>
-                    <li>
+                    <li key={cardItem.id +"status"}>
                         <span className="heading">STATUS</span>
                         <span className="value">{cardItem.status}</span>
                     </li>
-                    <li>
+                    <li key={cardItem.id +"SPECIES"}>
                         <span className="heading">SPECIES</span>
                         <span className="value">{cardItem.species}</span>
                     </li>
-                    <li>
+                    <li key={cardItem.id +"GENDER"}>
                         <span className="heading">GENDER</span>
                         <span className="value">{cardItem.gender}</span>
                     </li>
-                    <li>
+                    <li key={cardItem.id +"ORIGIN"}>
                         <span className="heading">ORIGIN</span>
                         <span className="value">{cardItem.origin.name}</span>
                     </li>
-                    <li>
+                    <li key={cardItem.id +"LAST LOCATION"}>
                         <span className="heading">LAST LOCATION</span>
                         <span className="value">{cardItem.location.name}</span>
                     </li>

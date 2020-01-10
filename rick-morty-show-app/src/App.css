@@ -1,3 +1,9 @@
+#root{
+  min-height: 100vh;
+  background-image: url("./fabric_of_squares_gray.png");
+  background-size: auto;
+  background-repeat: repeat;
+}
 .App {
   text-align: center;
   display: grid;
@@ -7,9 +13,6 @@
                     "filters selectedFilters"
                     "filters cards";
   grid-gap: 1em;
-  background-image: url("./fabric_of_squares_gray.png");
-  background-size: auto;
-  background-repeat: repeat;
 }
 
 .no-btn{
