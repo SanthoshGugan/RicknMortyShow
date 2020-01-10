@@ -61,6 +61,28 @@
     margin-left: 0.5em;
 }
 
+.pagination button{
+    border-radius: 10px;
+    color: black;
+    
+}
+.pagination button:disabled{
+    color: #cbcaca;
+    background-color: #e7e2dc;
+}
+
+@media(max-width: 650px){
+    .selectedFilters{
+        
+        font-size: 0.75em;
+    }
+    .pagination > div{
+        display: none;
+    }
+    .to, .hypen{
+        display: inline-block !important;
+    }
+}
 @media(max-width: 480px){
     .sortInput{
         width: 100%;

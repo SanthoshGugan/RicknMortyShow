@@ -10,7 +10,6 @@ export default class FetchCharactersService {
             fetch('https://rickandmortyapi.com/api/character/')
                 .then(res => res.json())
                 .then(resJSON => {
-                    console.log("Response JSON : ", resJSON);
                     this.characterList = _.cloneDeep(resJSON.results);
                     this.nextUrl = resJSON.info.next;
                     setTimeout(()=>{
@@ -29,7 +28,6 @@ export default class FetchCharactersService {
             .then(resJSON => {
                 this.characterList = [...this.characterList, ...resJSON.results];
                 this.nextUrl = resJSON.info.next;
-                console.log("Async : ",this.characterList.length, this.nextUrl);
                 setTimeout(()=> {
                     this.backgroundFetch();
                 },5000)

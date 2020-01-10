@@ -11,11 +11,9 @@ export const FilterItem = (props) => {
         props.handleFilterAction(props.category, option, index)
     }
     const renderOptions = (options) => {
-        // console.log("Options : ", options);
         return (
             <>
                 {options.map((option, index) => {
-                    // console.log("current option " ,option);
                     return (
                             <li key={index}>
                                 <input type="checkbox" checked={option.status} onChange={() => handleOptionChange(index)}/>

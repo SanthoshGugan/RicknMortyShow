@@ -118,7 +118,7 @@ export default class App extends React.Component {
 
   handleRangeChange(mode){
     let rangeStart, rangeEnd;
-    if(mode == "prev"){
+    if(mode === "prev"){
       if(this.state.rangeStart > 7){
         rangeStart = this.state.rangeStart - 8
         rangeEnd = rangeStart+7;
@@ -140,7 +140,6 @@ export default class App extends React.Component {
 
   resetRange(cardList){
     let rangeStart, rangeEnd;
-    console.log("Cardlist length : ", cardList.length, cardList);
     if(cardList.length === 0){
       this.setState({rangeStart: 0, rangeEnd: 0});
       return;

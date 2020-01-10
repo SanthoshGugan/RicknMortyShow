@@ -11,8 +11,8 @@ export const Filters = (props) => {
         return (
             <>
                 {
-                Object.keys(props.filters).map(filter => {
-                    return <FilterItem category={filter} options={props.filters[filter]} handleFilterAction = {props.onFilterClick} />;
+                Object.keys(props.filters).map((filter, index) => {
+                    return <FilterItem category={filter} options={props.filters[filter]} handleFilterAction = {props.onFilterClick} key={index}/>;
                 })}
 
             </>
@@ -29,10 +29,10 @@ export const Filters = (props) => {
     const renderMyProjects = () => {
         return (
             <div className="myProjects">
-                <h3>Please check out my Projects</h3>
+                <h3>Check out my Projects</h3>
                 <ul>
                     <li>
-                        <a href="http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com:3011/" target="_blank">Uber Mock Demand Supply Engine</a>
+                        <a href="http://ec2-13-127-170-233.ap-south-1.compute.amazonaws.com:3011/" target="_blank" rel="noopener noreferrer">Uber Mock Demand Supply Engine</a>
                     </li>
                 </ul>
             </div>

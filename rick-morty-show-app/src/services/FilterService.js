@@ -64,7 +64,6 @@ export default class FilterService {
 
     updateFilterByCategory(filters,apiCardList) {
         let distinctFilters = this.getDistinctFiltersByStatus(filters);
-        // console.log("Distinct Filters : ", distinctFilters);
         let newCardList = apiCardList.filter(cardItem => {
             if(distinctFilters['species'].hasOwnProperty(cardItem['species']))
                 return true;
@@ -75,7 +74,6 @@ export default class FilterService {
             return false;
         });
 
-        console.log("newCardList : ",newCardList);
         return _.cloneDeep(newCardList);
     }
 }
